@@ -22,13 +22,12 @@ form .form-control {
 form .form-control:focus {
   z-index: 2;
 }
-form input[type="text"] {
-  margin-bottom: -1px;
+form input {
+  margin-bottom: 5px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
-form input[type="password"] {
-  margin-bottom: 10px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+
+form button[type="submit"] {
+  margin-top: 20px;
 }
