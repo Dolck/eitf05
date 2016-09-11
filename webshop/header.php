@@ -23,13 +23,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">KepsShoppen</a>
+          <a class="navbar-brand" href="index.php">KepsShoppen</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){ echo 'class="active"';} ?>><a href="index.php">Home</a></li>
+            <!-- TODO: add logic to show different menu items when logged in -->
+            <li <?php if(basename($_SERVER['PHP_SELF']) == 'register.php'){ echo 'class="active"';} ?>><a href="register.php">Register</a></li>
+            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
