@@ -1,7 +1,7 @@
 <?php
 include 'header.php'
 ?>
-
+<div id="content">
 <div class="column">
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
@@ -10,7 +10,7 @@ include 'header.php'
         <h3>Råsa Cheps</h3>
         <p>Det klassiska orginalet. Gör alla teknologer avundsjuka med det senaste från LTH:s modekatalog!</p>
         <p>
-            <div class="input-group" style="width:200px">
+            <div class="input-group">
                 <span class="input-group-btn">
                     <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
                         <span class="glyphicon glyphicon-minus"></span>
@@ -22,8 +22,10 @@ include 'header.php'
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </span>
+                <span class="input-group-btn" style="padding-left:10px">
+                    <a href="#" class="btn btn-primary" role="button">Lägg till</a>
+                </span>
             </div>
-            <a href="#" class="btn btn-primary" role="button">Lägg till</a>
         </p>
       </div>
     </div>
@@ -46,6 +48,7 @@ include 'header.php'
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <script>
@@ -90,17 +93,10 @@ $('.input-number').change(function() {
     valueCurrent = parseInt($(this).val());
     
     name = $(this).attr('name');
-    if(valueCurrent >= minValue) {
+    if(valueCurrent >= minValue && valueCurrent <= maxValue) {
         $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
     } else {
-        alert('Sorry, the minimum value was reached');
-        $(this).val($(this).data('oldValue'));
-    }
-    if(valueCurrent <= maxValue) {
-        $(".btn-number[data-type='plus'][data-field='"+name+"']").removeAttr('disabled')
-    } else {
-        alert('Sorry, the maximum value was reached');
-        $(this).val($(this).data('oldValue'));
+        $(this).val(0)
     }
     
     

@@ -31,3 +31,7 @@ form input {
 form button[type="submit"] {
   margin-top: 20px;
 }
+
+#content{
+  margin-top: 51px;
+}
