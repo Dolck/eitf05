@@ -83,7 +83,6 @@ $('.input-number').change(function() {
 	} else if (current === min) {
 		$('.btn-number[data-field-id="' + name + '"][data-type="minus"]').attr('disabled', true);
 	} else {
-		console.log($(this).data('oldValue'))
 		$(this).val($(this).data('oldValue'));
 	}
 });
