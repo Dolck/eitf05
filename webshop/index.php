@@ -12,13 +12,13 @@ include 'header.php'
         <p>
             <div class="input-group">
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" data-type="minus" data-field="quant[1]">
+                    <button type="button" class="btn btn-default btn-number" data-type="minus" data-field-id="quant[1]">
                         <span class="glyphicon glyphicon-minus"></span>
                     </button>
                 </span>
-                <input type="text" name="quant[1]" class="form-control input-number" value="1" min="0" max="200">
+                <input type="number" name="quant[1]" class="form-control input-number" value="1" min="1" max="200" size="3">
                 <span class="input-group-btn">
-                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+                    <button type="button" class="btn btn-default btn-number" data-type="plus" data-field-id="quant[1]">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </span>
@@ -52,6 +52,19 @@ include 'header.php'
 </div>
 
 <script>
+function updateNumber(op){
+    e.preventDefault();
+
+    let fieldId = $(this).attr('data-field-id');
+    let input = $("input[name='" + fieldId + "']");
+    let value = parseInt(input.val());
+
+    input.val(isNaN(value) ? value : op(value)).change();
+}
+
+$('.btn-number[data-type="plus"]').click(e => updateNumber( v => v + 1 ));
+$('.btn-number[data-type="minus"]').click(e => updateNumber( v => v - 1 ));
+
 $('.btn-number').click(function(e){
     e.preventDefault();
     
@@ -88,20 +101,22 @@ $('.input-number').focusin(function(){
 });
 $('.input-number').change(function() {
     
-    minValue =  parseInt($(this).attr('min'));
-    maxValue =  parseInt($(this).attr('max'));
-    valueCurrent = parseInt($(this).val());
+    min =  parseInt($(this).attr('min'));
+    max =  parseInt($(this).attr('max'));
+    current = parseInt($(this).val());
     
     name = $(this).attr('name');
-    if(valueCurrent >= minValue && valueCurrent <= maxValue) {
-        $(".btn-number[data-type='minus'][data-field='"+name+"']").removeAttr('disabled')
+    if (current < max && current > min) {
+        $(".btn-number[data-field='" + name + "']").removeAttr('disabled');
+    } else if (current === max) {
+        $('.btn-number[data-field="' + name + '", data-type="plus"').attr('disabled', true);
+    } else if (current === min) {
+        $('.btn-number[data-field="' + name + '", data-type="minus"').attr('disabled', true);
     } else {
-        $(this).val(0)
+        $('this').val($('this').data('oldValue'));
     }
-    
-    
 });
-$(".input-number").keydown(function (e) {
+/*$(".input-number").keydown(function (e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 190]) !== -1 ||
              // Allow: Ctrl+A
@@ -115,5 +130,5 @@ $(".input-number").keydown(function (e) {
         if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
             e.preventDefault();
         }
-    });
+    });*/
 </script>
