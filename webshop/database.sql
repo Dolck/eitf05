@@ -1,7 +1,9 @@
 /* Database Webshop*/
 
 SET foreign_key_checks = 0;
-drop table if exists users;
+drop table if exists Users;
+drop table if exists Orders;
+drop table if exists Products;
 SET foreign_key_checks = 1;
 
 create table Users(
@@ -15,17 +17,17 @@ create table Users(
 	zipcode varchar (30) NOT NULL
 );
 
-create table Orders(
-	id int AUTOINCREMENT PRIMARY KEY,
-	user,
-	p_id,
-	quantity int NOT NULL,
-	FOREIGN KEY (user) REFERENCES Users (username),
-	FOREIGN KEY (p_id) REFERENCES Products (id)
-);
-
 create table Products(
-	id int PRIMARY KEY AUTOINCREMENT,
+	id int PRIMARY KEY auto_increment,
 	name varchar (30) NOT NULL,
 	price int NOT NULL
+);
+
+create table Orders(
+	id int auto_increment PRIMARY KEY,
+	username varchar(20),
+	p_id int,
+	quantity int NOT NULL,
+	FOREIGN KEY (username) REFERENCES Users(username),
+	FOREIGN KEY (p_id) REFERENCES Products(id)
 );
