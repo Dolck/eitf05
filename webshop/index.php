@@ -38,16 +38,26 @@
 					<div class="caption">
 						<h3>Lila Cheps</h3>
 						<p>En exklusiv variant för att sticka ut ur mängden. Detta lila alternativ lämnar inte en trosa torr.</p>
-						<p>
-							<a href="#" class="btn btn-default" role="button">-</a>
-							<a href="#" class="btn btn-default" role="button">+</a>
-							<a href="#" class="btn btn-primary" role="button">Lägg till</a>
-						</p>
+						<div class="input-group quantity-selector">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default btn-number" data-type="minus" data-field-id="quant[1]" disabled="disabled">
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
+							</span>
+							<input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="200" data-toggle="tooltip" data-placement="bottom" title="Input a value between 1 and 200">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field-id="quant[1]">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</span>
+						</div>
+						<span class="add-to-cart">
+							<a href="#" class="btn btn-primary" role="button">Add to basket</a>
+						</span>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 <script>
 function updateNumber(e, op){
@@ -71,7 +81,7 @@ $('.input-number').change(function() {
 	min =  parseInt($(this).attr('min'));
 	max =  parseInt($(this).attr('max'));
 	current = parseInt($(this).val());
-	
+
 	if (current < max && current > min) {
 		$(".btn-number[data-field-id='" + name + "']").removeAttr('disabled');
 	} else if (current === max) {
