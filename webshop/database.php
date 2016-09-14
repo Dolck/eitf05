@@ -5,10 +5,10 @@
 class Database {
 	private $_connection;
 	private static $_instance; //The single instance
-	private $_host = "HOSTt";
+	private $_database = 'mysql:dbname=testdb;host=127.0.0.1';
 	private $_username = "USERNAME";
 	private $_password = "PASSWORd";
-	private $_database = "DATABASE";
+
 	/*
 	Get an instance of the Database
 	@return Instance
@@ -21,13 +21,12 @@ class Database {
 	}
 	// Constructor
 	private function __construct() {
-		$this->_connection = new mysqli($this->_host, $this->_username, 
-			$this->_password, $this->_database);
-	
-		// Error handling
-		if(mysqli_connect_error()) {
-			trigger_error("Failed to conencto to MySQL: " . mysql_connect_error(),
-				 E_USER_ERROR);
+		try{
+			$this->_connection = new PDO($this->_database, 
+				$this->_username,  $this->_password);
+		}catch (PDOException $e) {
+			//TODO: log this in some good manner
+    		echo 'Connection failed: ' . $e->getMessage();
 		}
 	}
 	// Magic method clone is empty to prevent duplication of connection
