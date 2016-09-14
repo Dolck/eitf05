@@ -16,10 +16,9 @@ create table Users(
 );
 
 create table Orders(
-	id int NOT NULL PRIMARY KEY,
+	id int AUTOINCREMENT PRIMARY KEY,
 	user,
 	p_id,
-	nbr int AUTOINCREMENT,
 	quantity int NOT NULL,
 	FOREIGN KEY (user) REFERENCES Users (username),
 	FOREIGN KEY (p_id) REFERENCES Products (id)
