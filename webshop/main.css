@@ -32,6 +32,25 @@ form button[type="submit"] {
   margin-top: 20px;
 }
 
-#content{
-  margin-top: 51px;
+#content {
+  margin-top: 3rem;
+}
+
+.quantity-selector {
+  width: 14rem;
+  float: left;
+}
+
+.add-to-cart {
+  float: right;
+}
+
+.product-caption:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.product-caption button:focus {
+  outline:none;
 }

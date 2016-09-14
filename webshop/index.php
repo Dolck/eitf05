@@ -6,27 +6,25 @@
 			<div class="col-sm-6 col-md-4">
 				<div class="thumbnail">
 					<img src="https://www.dsek.se/fotoarkiv/data/1999/Nollningen/Lekar-i-gr%F8ngr%E6set%20och%20sittning/00002850.jpg" alt="nollor">
-					<div class="caption">
+					<div class="caption product-caption">
 						<h3>Råsa Cheps</h3>
 						<p>Det klassiska orginalet. Gör alla teknologer avundsjuka med det senaste från LTH:s modekatalog!</p>
-						<p>
-							<div class="input-group">
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default btn-number" data-type="minus" data-field-id="quant[1]" disabled="disabled">
-										<span class="glyphicon glyphicon-minus"></span>
-									</button>
-								</span>
-								<input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="200" data-toggle="tooltip" data-placement="bottom" title="Input a value between 1 and 200">
-								<span class="input-group-btn">
-									<button type="button" class="btn btn-default btn-number" data-type="plus" data-field-id="quant[1]">
-										<span class="glyphicon glyphicon-plus"></span>
-									</button>
-								</span>
-							</div>
+						<div class="input-group quantity-selector">
 							<span class="input-group-btn">
-								<a href="#" class="btn btn-primary" role="button">Add</a>
+								<button type="button" class="btn btn-default btn-number" data-type="minus" data-field-id="quant[1]" disabled="disabled">
+									<span class="glyphicon glyphicon-minus"></span>
+								</button>
 							</span>
-						</p>
+							<input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="200" data-toggle="tooltip" data-placement="bottom" title="Input a value between 1 and 200">
+							<span class="input-group-btn">
+								<button type="button" class="btn btn-default btn-number" data-type="plus" data-field-id="quant[1]">
+									<span class="glyphicon glyphicon-plus"></span>
+								</button>
+							</span>
+						</div>
+						<span class="add-to-cart">
+							<a href="#" class="btn btn-primary" role="button">Add to basket</a>
+						</span>
 					</div>
 				</div>
 			</div>
@@ -50,8 +48,6 @@
 			</div>
 		</div>
 	</div>
-</body>
-</html>
 
 <script>
 function updateNumber(e, op){
@@ -88,3 +84,5 @@ $('.input-number').change(function() {
 });
 $('[data-toggle="tooltip"]').tooltip()
 </script>
+</body>
+</html>
