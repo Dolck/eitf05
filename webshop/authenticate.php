@@ -5,7 +5,7 @@
 	require_once('database.php');
 	session_start();
 	$db = Database::getInstance();
-	$pdo_conn = $db->getConnection(); 
+	$pdo_conn = $db->getConnection();
 
 	$usr = $_POST['inputUsername'];
 	$pwd = $_POST['inputPassword'];

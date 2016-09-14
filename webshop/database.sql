@@ -7,7 +7,7 @@ drop table if exists Products;
 SET foreign_key_checks = 1;
 
 create table Users(
-	username varchar (20) NOT NULL PRIMARY KEY,
+	username varchar (20) PRIMARY KEY,
 	password varchar (50) NOT NULL,
 	email varchar (50) NOT NULL,
 	forename varchar (30) NOT NULL,
@@ -17,11 +17,17 @@ create table Users(
 	zipcode varchar (30) NOT NULL
 );
 
+INSERT INTO Users VALUES ('nolla', 'ny123', 'dat16hsi@student.lu.se', 'Homer', 'Simpson', 'Springfield', '742 Evergreen Terrace', '58008');
+
 create table Products(
 	id int PRIMARY KEY auto_increment,
 	name varchar (30) NOT NULL,
-	price int NOT NULL
+	price int NOT NULL,
+	description varchar (150) NOT NULL
 );
+
+INSERT INTO Products (name, price, description) VALUES ('Råsa Cheps', '30', 'Det klassiska orginalet. Gör alla teknologer avundsjuka med det senaste från LTH:s modekatalog!');
+INSERT INTO Products (name, price, description) VALUES ('Lila Cheps', '35', 'En exklusiv variant för att sticka ut ur mängden. Detta lila alternativ lämnar inte en trosa torr.');
 
 create table Orders(
 	id int auto_increment PRIMARY KEY,
