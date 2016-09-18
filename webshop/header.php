@@ -39,15 +39,18 @@
           <ul class="nav navbar-nav">
             <li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){ echo 'class="active"';} ?>><a href="index.php">Home</a></li>
             <!-- TODO: add logic to show different menu items when logged in -->
-            <?php 
+            
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+			<?php 
             	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == TRUE){
             ?>
-            	<li><a href="logout.php">Logout</a></li>
+            	<li <?php if(basename($_SERVER['PHP_SELF']) == 'logout.php'){ echo 'class="active"';} ?>><a href="logout.php">Logout</a></li>
             <?php 
             	}else{
             ?>
             	<li <?php if(basename($_SERVER['PHP_SELF']) == 'register.php'){ echo 'class="active"';} ?>><a href="register.php">Register</a></li>
-	            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
+	            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php' || basename($_SERVER['PHP_SELF']) == 'authenticate.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
             <?php
             	}	
             ?>
