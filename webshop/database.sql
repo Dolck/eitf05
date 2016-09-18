@@ -8,7 +8,7 @@ SET foreign_key_checks = 1;
 
 create table Users(
 	username varchar (20) PRIMARY KEY,
-	password varchar (50) NOT NULL,
+	password varchar (255) NOT NULL,
 	email varchar (50) NOT NULL,
 	forename varchar (30) NOT NULL,
 	lastname varchar (30) NOT NULL,
