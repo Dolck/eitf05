@@ -2,8 +2,6 @@
 		include 'header.php';
 		include 'database.php';
 
-		session_start();
-
 		$db = Database::getInstance();
 		$pdo = $db->getConnection();
 	?>

@@ -1,3 +1,8 @@
+<?php
+	if(!isset($_SESSION)) { 
+		session_start();
+	}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,8 +39,18 @@
           <ul class="nav navbar-nav">
             <li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){ echo 'class="active"';} ?>><a href="index.php">Home</a></li>
             <!-- TODO: add logic to show different menu items when logged in -->
-            <li <?php if(basename($_SERVER['PHP_SELF']) == 'register.php'){ echo 'class="active"';} ?>><a href="register.php">Register</a></li>
-            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
+            <?php 
+            	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == TRUE){
+            ?>
+            	<li><a href="logout.php">Logout</a></li>
+            <?php 
+            	}else{
+            ?>
+            	<li <?php if(basename($_SERVER['PHP_SELF']) == 'register.php'){ echo 'class="active"';} ?>><a href="register.php">Register</a></li>
+	            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
+            <?php
+            	}	
+            ?>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

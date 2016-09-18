@@ -22,7 +22,8 @@ try {
 		$stmt->execute(array($username, $hashedPassword, $email, $forname, $lastname, $city, $street, $zipcode));
 		$count = $stmt->rowCount();
 	} catch (PDOException $e) {
-		$error = "*** Internal error: " . $e->getMessage() . "<p>" . $query;
+		echo "Unable to create user";
+		$error = "Unable to create user";
 		die($error);
 	}
 ?>
