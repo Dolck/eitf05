@@ -21,9 +21,19 @@ try {
 		$stmt = $pdo_conn->prepare($sql);
 		$stmt->execute(array($username, $hashedPassword, $email, $forname, $lastname, $city, $street, $zipcode));
 		$count = $stmt->rowCount();
+		echo "Successfully created user, returning to homepage!";
+
 	} catch (PDOException $e) {
 		echo "Unable to create user";
 		$error = "Unable to create user";
 		die($error);
 	}
+
+
 ?>
+<script type="text/javascript">
+//Redirect after a short time
+window.setTimeout(function function_name(argument) {
+	window.location = "index.php";
+}, 3000);
+</script>
