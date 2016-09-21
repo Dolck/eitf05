@@ -79,3 +79,14 @@ form button[type="submit"] {
   outline: none;
 }
 .btn-cart:focus { color: #fff; outline: true; }
+
+.display-user {
+    color: lightblue;
+    font-size: 14px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 5px;
+}
+
+
+

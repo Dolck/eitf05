@@ -45,6 +45,7 @@
 			<?php 
             	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == TRUE){
             ?>
+              <li class="display-user"> <span> <?php echo 'Logged in as: '?> <?php echo $_SESSION['username']?></span></li>
             	<li <?php if(basename($_SERVER['PHP_SELF']) == 'logout.php'){ echo 'class="active"';} ?>><a href="logout.php">Logout</a></li>
             <?php 
             	}else{
