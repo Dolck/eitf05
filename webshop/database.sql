@@ -17,7 +17,7 @@ create table Users(
 	zipcode varchar (30) NOT NULL
 );
 
-INSERT INTO Users VALUES ('nolla', 'ny123', 'dat16hsi@student.lu.se', 'Homer', 'Simpson', 'Springfield', '742 Evergreen Terrace', '58008');
+INSERT INTO Users VALUES ('nolla', '$2y$10$PKDJao3dvi.EGgyR2hwq..62eK0LUzj8eMDxrgDqOP/r2XyD1km4C'/* 'ny123' */, 'dat16hsi@student.lu.se', 'Homer', 'Simpson', 'Springfield', '742 Evergreen Terrace', '58008');
 
 create table Products(
 	id int PRIMARY KEY auto_increment,

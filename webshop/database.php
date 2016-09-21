@@ -5,7 +5,7 @@
 class Database {
 	private $_connection;
 	private static $_instance; //The single instance
-	private $_database = 'mysql:dbname=testdb;host=127.0.0.1';
+	private $_database = 'mysql:dbname=testdb;host=127.0.0.1;charset=utf8';
 	private $_username = "username";
 	private $_password = "password";
 

@@ -58,3 +58,24 @@ form button[type="submit"] {
 .product-caption button:focus {
   outline:none;
 }
+
+.btn-cart {
+  margin-top: 12px;
+  background: linear-gradient(to bottom,#080808 0,#0f0f0f 100%);
+  border: none;
+  color: #9d9d9d;
+  text-shadow: none;
+}
+
+.btn-cart:hover {
+  color: #fff;
+  outline: none;
+  background: linear-gradient(to bottom,#080808 0,#0f0f0f 100%);
+}
+
+.btn-cart:active:focus { 
+  background: linear-gradient(to bottom,#080808 0,#0f0f0f 100%);
+  color: #fff;
+  outline: none;
+}
+.btn-cart:focus { color: #fff; outline: true; }

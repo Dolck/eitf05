@@ -35,7 +35,7 @@
 									</span>
 								</div>
 								<span class="add-to-cart">
-									<a href="#" class="btn btn-primary" role="button">Add to basket</a>
+									<a href="#" class="btn btn-primary" role="button">Add to cart</a>
 								</span>
 							</div>
 						</div>

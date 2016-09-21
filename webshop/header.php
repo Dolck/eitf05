@@ -54,6 +54,11 @@
             <?php
             	}	
             ?>
+            <li>
+              <button type="button" class="btn btn-default btn-sm btn-cart">
+                <span class="glyphicon glyphicon-shopping-cart"></span> 3 items
+              </button>
+            </li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
