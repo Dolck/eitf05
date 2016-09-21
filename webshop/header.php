@@ -1,5 +1,5 @@
 <?php
-	if(!isset($_SESSION)) { 
+	if(!isset($_SESSION)) {
 		session_start();
 	}
 ?>
@@ -39,26 +39,26 @@
           <ul class="nav navbar-nav">
             <li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){ echo 'class="active"';} ?>><a href="index.php">Home</a></li>
             <!-- TODO: add logic to show different menu items when logged in -->
-            
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
-			<?php 
+			<?php
             	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == TRUE){
             ?>
               <li class="display-user"> <span> <?php echo 'Logged in as: '?> <?php echo $_SESSION['username']?></span></li>
             	<li <?php if(basename($_SERVER['PHP_SELF']) == 'logout.php'){ echo 'class="active"';} ?>><a href="logout.php">Logout</a></li>
-            <?php 
+            <?php
             	}else{
             ?>
             	<li <?php if(basename($_SERVER['PHP_SELF']) == 'register.php'){ echo 'class="active"';} ?>><a href="register.php">Register</a></li>
 	            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php' || basename($_SERVER['PHP_SELF']) == 'authenticate.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
             <?php
-            	}	
+            	}
             ?>
             <li>
-              <button type="button" class="btn btn-default btn-sm btn-cart">
+              <a href="cart.php" <button type="button" class="btn btn-default btn-sm btn-cart">
                 <span class="glyphicon glyphicon-shopping-cart"></span> 3 items
-              </button>
+              </button></a>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
