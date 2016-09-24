@@ -35,7 +35,7 @@
 									</span>
 								</div>
 								<span class="add-to-cart">
-									<a href="#" class="btn btn-primary" role="button">Add to cart</a>
+									<button class="btn btn-primary" role="button" data-id="<?php echo $id ?>">Add to cart</button>
 								</span>
 							</div>
 						</div>
@@ -45,40 +45,46 @@
 	</div>
 
 	<script>
-		function updateNumber(e, op){
-			e.preventDefault();
+		$(document).ready(() => {
+			function updateNumber(btn, op){
+				let fieldId = $(btn).attr('data-field-id');
+				let input = $("input[name='" + fieldId + "']");
+				let value = parseInt(input.val());
 
-			let fieldId = $(e.currentTarget).attr('data-field-id');
-			let input = $("input[name='" + fieldId + "']");
-			let value = parseInt(input.val());
-
-			input.val(isNaN(value) ? value : op(value)).change();
-		}
-
-		$('.btn-number[data-type="plus"]').click(e => updateNumber(e, v => v + 1 ));
-		$('.btn-number[data-type="minus"]').click(e => updateNumber(e,  v => v - 1 ));
-
-		$('.input-number').focusin(function(){
-			$(this).data('oldValue', $(this).val());
-		});
-		$('.input-number').change(function() {
-			name = $(this).attr('name');
-			min =  parseInt($(this).attr('min'));
-			max =  parseInt($(this).attr('max'));
-			current = parseInt($(this).val());
-			
-			if (current <= max && current >= min) {
-				$(".btn-number[data-field-id='" + name + "']").removeAttr('disabled');
-				if (current === max) {
-					$('.btn-number[data-field-id="' + name + '"][data-type="plus"]').attr('disabled', true);
-				} else if (current === min) {
-					$('.btn-number[data-field-id="' + name + '"][data-type="minus"]').attr('disabled', true);
-				}
-			} else {
-				$(this).val($(this).data('oldValue'));
+				input.val(isNaN(value) ? value : op(value)).change();
 			}
-		});
-		$('[data-toggle="tooltip"]').tooltip()
+
+			$('.btn-number[data-type="plus"]').click(function() { updateNumber(this, v => v + 1 ) } );
+			$('.btn-number[data-type="minus"]').click(function() { updateNumber(this,  v => v - 1 ) } );
+
+			$('.input-number').focusin(function(){
+				$(this).data('oldValue', $(this).val());
+			});
+			$('.input-number').change(function() {
+				name = $(this).attr('name');
+				min =  parseInt($(this).attr('min'));
+				max =  parseInt($(this).attr('max'));
+				current = parseInt($(this).val());
+				
+				if (current <= max && current >= min) {
+					$(".btn-number[data-field-id='" + name + "']").removeAttr('disabled');
+					if (current === max) {
+						$('.btn-number[data-field-id="' + name + '"][data-type="plus"]').attr('disabled', true);
+					} else if (current === min) {
+						$('.btn-number[data-field-id="' + name + '"][data-type="minus"]').attr('disabled', true);
+					}
+				} else {
+					$(this).val($(this).data('oldValue'));
+				}
+			});
+			$('[data-toggle="tooltip"]').tooltip();
+			$('.add-to-cart button').click(function() {
+				let id = parseInt($(this).attr('data-id'));
+				let quantity = parseInt($('input[name="quant['+id+']"]').val());
+				$('#cart').text(parseInt($('#cart').html()) + quantity);
+				$.post("updateCart.php", { 'action': "add", 'product': id, 'quantity': quantity });
+			});
+		})
 	</script>
 </body>
 </html>
