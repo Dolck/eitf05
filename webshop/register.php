@@ -23,9 +23,12 @@ include 'header.php';
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
 
+				<label for="confirmPassword" class="sr-only">Password</label>
+				<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Password" required>
+
         <label for="inputStreet" class="sr-only">Street</label>
         <input type="text" id="inputStreet" name="inputStreet" class="form-control" placeholder="Street" required>
-        
+
         <label for="inputZip" class="sr-only">Zip code</label>
         <input type="text" id="inputZip" name="inputZip" class="form-control" placeholder="Zip" required>
 

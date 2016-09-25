@@ -1,5 +1,5 @@
 <?php
-	if(!isset($_SESSION)) { 
+	if(!isset($_SESSION)) {
 		session_start();
 	}
 ?>
@@ -39,25 +39,38 @@
           <ul class="nav navbar-nav">
             <li <?php if(basename($_SERVER['PHP_SELF']) == 'index.php'){ echo 'class="active"';} ?>><a href="index.php">Home</a></li>
             <!-- TODO: add logic to show different menu items when logged in -->
-            
+
           </ul>
           <ul class="nav navbar-nav navbar-right">
-			<?php 
-            	if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == TRUE){
+            <?php
+            	if(!empty($_SESSION['loggedIn'])){
             ?>
+              <li><p class="navbar-text" style="color: lightblue;">Logged in as: <?php echo $_SESSION['username'] ?></p></li>
             	<li <?php if(basename($_SERVER['PHP_SELF']) == 'logout.php'){ echo 'class="active"';} ?>><a href="logout.php">Logout</a></li>
-            <?php 
+            <?php
             	}else{
             ?>
             	<li <?php if(basename($_SERVER['PHP_SELF']) == 'register.php'){ echo 'class="active"';} ?>><a href="register.php">Register</a></li>
 	            <li <?php if(basename($_SERVER['PHP_SELF']) == 'login.php' || basename($_SERVER['PHP_SELF']) == 'authenticate.php'){ echo 'class="active"';} ?>><a href="login.php">Login</a></li>
             <?php
-            	}	
+            	}
             ?>
             <li>
-              <div><a href="cart.php" role="button" class="btn btn-default btn-sm btn-cart">
-                  <span class="glyphicon glyphicon-shopping-cart"></span> <span id="cart">3</span> items
-              </a></div>
+              <p><a href="cart.php" role="button" class="btn btn-default btn-sm btn-cart">
+                <span class="glyphicon glyphicon-shopping-cart"></span> <span id="cart-text"></span>
+                <script>
+                  var cartSum = <?php echo isset($_SESSION['cart']) ? array_sum($_SESSION['cart']) : 0 ?>;
+                  function cartText(toAdd){
+                    cartSum += toAdd;
+                    switch (cartSum) {
+                      case 0: $('#cart-text').text('Cart is empty'); break;
+                      case 1: $('#cart-text').text(cartSum + ' item'); break;
+                      default: $('#cart-text').text(cartSum + ' items');
+                    }
+                  }
+                  cartText(0);
+                </script>
+              </a></p>
             </li>
           </ul>
         </div><!--/.nav-collapse -->
