@@ -73,3 +73,58 @@ form button[type="submit"] {
   background: linear-gradient(to bottom,#080808 0,#0f0f0f 100%);
 }
 .btn-cart:focus { color: #fff; outline: true; }
+
+.cart-img {
+  margin: 0;
+}
+.cart-img > img {
+  width: 100%;
+  height: auto;
+}
+
+.cart-calculation {
+  margin-bottom: 0;
+}
+.cart-calculation * {
+  text-align: right;
+}
+.cart-calculation .panel-heading {
+  border: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: #fff;
+  padding: 0 auto;
+  border-bottom: 1px solid #ddd;
+}
+.cart-calculation .input-group > * {
+  border: 0;
+  border-radius: 0;
+  padding: 6px 15px;
+  background: #f5f5f5;
+}
+.cart-calculation .panel-footer {
+  padding-top: 0;
+  border-top: 1px solid darkgrey;
+}
+
+
+
+.row-height {
+  display: table;
+  table-layout: fixed;
+  height: 100%;
+}
+.col-height {
+  display: table-cell;
+  float: none;
+  height: 100%;
+}
+.col-top {
+  vertical-align: top;
+}
+.col-middle {
+  vertical-align: middle;
+}
+.col-bottom {
+  vertical-align: bottom;
+}
