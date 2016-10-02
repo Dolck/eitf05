@@ -60,7 +60,7 @@
           <div class="input-group pull-right" style="width: 1rem;">
             <span class="input-group-addon">Total: <?php echo $totalPrice ?>:-</span>
             <span class="input-group-btn">
-              <button type="button" class="btn btn-success">Checkout <span class="glyphicon glyphicon-chevron-right"></span></button>
+              <a href="checkout.php" type="button" class="btn btn-success">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a>
             </span>
           </div>
         </div>
