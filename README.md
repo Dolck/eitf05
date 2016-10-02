@@ -5,9 +5,9 @@ address.~~
 * ~~Existing users signing in. The username must be clearly shown on the page when a user is logged
 in.~~
 * ~~Adding items to shopping cart.~~
-* Checkout and payment. The payment should just be simulated, but once finished the user should
+* ~~Checkout and payment. The payment should just be simulated, but once finished the user should
 be presented with a receipt with all details of the purchase. That is, it should look real, although
-the payment functionality itself is just simulated.
+the payment functionality itself is just simulated.~~
 
 
 # Usage
