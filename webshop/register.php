@@ -8,6 +8,15 @@ include 'header.php';
 
       <form action="regUser.php" method="post">
         <h2>Register new user</h2>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
+
+        <label for="confirmPassword" class="sr-only">Password</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Password" required>
+        
         <label for="inputForename" class="sr-only">Forename</label>
         <input type="text" id="inputForename" name="inputForename" class="form-control" placeholder="Forename" required>
 
@@ -16,15 +25,6 @@ include 'header.php';
 
         <label for="inputEmail" class="sr-only">Email</label>
         <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="Email" required>
-
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
-
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="Password" required>
-
-				<label for="confirmPassword" class="sr-only">Password</label>
-				<input type="password" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Password" required>
 
         <label for="inputStreet" class="sr-only">Street</label>
         <input type="text" id="inputStreet" name="inputStreet" class="form-control" placeholder="Street" required>
