@@ -21,7 +21,6 @@
 * display_startup_errors -> off
 * track_errors -> off
 * html_errors -> off
-
 * file_uploads -> off (don't need this)
 * allow_url_fopen -> off (don't need this) 
 * disable smtp
