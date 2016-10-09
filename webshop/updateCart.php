@@ -3,10 +3,15 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_start();
-        switch ($_POST['action']) {
-            case "add": add(); break;
-            case "set": set(); break; 
-            case "empty": unset($_SESSION['cart']); break;
+        if(!empty($_SESSION['cart_token']) && hash_equals($_POST['csrfToken'], $_SESSION['cart_token'])){
+            switch ($_POST['action']) {
+                case "add": add(); break;
+                case "set": set(); break; 
+                case "empty": unset($_SESSION['cart']); break;
+            }
+        }else{
+            //Csrf dont match.
+            http_response_code(400);
         }
     }
 

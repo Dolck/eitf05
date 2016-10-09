@@ -12,9 +12,6 @@ the payment functionality itself is just simulated.~~
 
 ## Security
 * Cross-Site Scripting (XSS)
-* Cross-Site Request Forgery (CSRF)
+* ~~Cross-Site Request Forgery (CSRF)~~
 * ~~SQL Injection~~
 * Remote File Inclusion (optional)
-
-# Usage
-php -S localhost:8080 -t ./webshop
