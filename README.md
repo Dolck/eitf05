@@ -11,10 +11,7 @@ be presented with a receipt with all details of the purchase. That is, it should
 the payment functionality itself is just simulated.~~
 
 ## Security
-* Cross-Site Scripting (XSS)
-* Cross-Site Request Forgery (CSRF)
+* ~~Cross-Site Scripting (XSS)~~
+* ~~Cross-Site Request Forgery (CSRF)~~
 * ~~SQL Injection~~
-* Remote File Inclusion (optional)
-
-# Usage
-php -S localhost:8080 -t ./webshop
+* ~~Remote File Inclusion (optional)~~

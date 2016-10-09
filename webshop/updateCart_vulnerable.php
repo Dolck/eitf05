@@ -3,16 +3,16 @@
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_start();
-        if(!empty($_SESSION['cart_token']) && hash_equals($_POST['csrfToken'], $_SESSION['cart_token'])){
+        /*if(!empty($_SESSION['cart_token']) && hash_equals($_POST['csrfToken'], $_SESSION['cart_token'])){*/
             switch ($_POST['action']) {
                 case "add": add(); break;
                 case "set": set(); break; 
                 case "empty": unset($_SESSION['cart']); break;
             }
-        }else{
+        /*}else{
             //Csrf dont match.
             http_response_code(400);
-        }
+        }*/
     }
 
     function add() {
@@ -29,13 +29,13 @@
 
     function set() {
         $id = $_POST['product'];
-        $quantity = intval($_POST['quantity']);
+        $quantity = $_POST['quantity']; // intval($_POST['quantity']);
         if (isValidID($id)) {
             if ($quantity > 0) {
                 $_SESSION['cart'][$id] = $quantity;
             } else if (isset($_SESSION['cart'][$id]) && sizeof($_SESSION['cart']) == 1) {
                 unset($_SESSION['cart']);
-            } else
+            }else
                 unset($_SESSION['cart'][$id]);
         }
     }

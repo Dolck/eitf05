@@ -5,17 +5,15 @@ include('header.php');
 $db = Database::getInstance();
 $pdo_conn = $db->getConnection();
 
-if(!function_exists('hash_equals')) {
-  function hash_equals($str1, $str2) {
-    if(strlen($str1) != strlen($str2)) {
-      return false;
-    } else {
-      $res = $str1 ^ $str2;
-      $ret = 0;
-      for($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
-      return !$ret;
-    }
-  }
+function check_password($str1) {
+	$regex_patternUPPER = '/.*[A-Z].*/';
+	$regex_patternLOWER = '/.*[a-z].*/';
+	$regex_patternDIGIT = '/.*[0-9].*/';
+	if (preg_match($regex_patternUPPER, $str1) && preg_match($regex_patternLOWER, $str1) && preg_match($regex_patternDIGIT, $str1)) {
+		return false;
+	} else {
+		return true;
+	}
 }
 
 $username = $_POST['inputUsername'];
@@ -55,8 +53,12 @@ if (strlen($username) > 20) {
 	htmlspecialchars($city, ENT_QUOTES, 'UTF-8') != $city || htmlspecialchars($street, ENT_QUOTES, 'UTF-8') != $street ||
 	htmlspecialchars($zipcode, ENT_QUOTES, 'UTF-8') != $zipcode) {
 	echo "Sorry, it seems like you're using prohibited charactes in your input fields, " .
-		"<a href=\"javascript:history.go(-1)\">go back</a>" . " and try again";
-} else if(!empty($_SESSION['register_token']) && hash_equals($_POST['csrfToken'], $_SESSION['register_token'])){
+		"<a href=\"javascript:history.go(-1)\">go back</a>" . " and try again.";
+} 	else if (strlen($password) < 8 || check_password($password)) {
+	echo "Sorry, either the password is too short, minimum length is 8 characters, or you're using wrong format. You must at least use one upper and lowercase character as well as one digit, " .
+	"<a href=\"javascript:history.go(-1)\">go back</a>" . " and try again.";
+
+}	else if(!empty($_SESSION['register_token']) && hash_equals($_POST['csrfToken'], $_SESSION['register_token'])){
  	if($password == $confirmPassword){
 		try {
 			$stmt = $pdo_conn->prepare($sql);

@@ -1,6 +1,9 @@
     <?php
         include_once 'header.php';
         include_once 'toolbox.php';
+
+        $_SESSION['cart_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+        $token = $_SESSION['cart_token'];
     ?>
 
     <div id="content">
@@ -76,8 +79,10 @@
                 let id = parseInt($(this).attr('data-id'));
                 let quantity = parseInt($('input[name="quant['+id+']"]').val());
                 $.post("updateCart.php",
-                       { 'action': "add", 'product': id, 'quantity': quantity },
-                       cartText(quantity));
+                       { 'action': "add", 'product': id, 'quantity': quantity, 'csrfToken': '<?php echo $token ?>' },
+                       cartText(quantity)).fail(function() {
+                            alert( "error" );
+                        });
             });
         });
     </script>
