@@ -1,6 +1,9 @@
 <?php
 require 'header.php';
-
+if (empty($_SESSION['login_token'])) {
+    $_SESSION['login_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
+$token = $_SESSION['login_token'];
 ?>
 
 
@@ -12,6 +15,7 @@ require 'header.php';
         <input type="text" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="hidden" name="csrfToken" value="<?php echo $token ?>" required>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
 
