@@ -82,7 +82,7 @@
 
   <script>
     $('.btn-empty-cart').click(function() {
-      $.post("updateCart.php", {'action': "empty"});
+      $.post("updateCart.php", {'action': "empty", 'csrfToken': '<?php echo $token ?>'});
       location.reload();
     });
 
