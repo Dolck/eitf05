@@ -11,7 +11,7 @@ be presented with a receipt with all details of the purchase. That is, it should
 the payment functionality itself is just simulated.~~
 
 ## Security
-* Cross-Site Scripting (XSS)
+* ~~Cross-Site Scripting (XSS)~~
 * ~~Cross-Site Request Forgery (CSRF)~~
 * ~~SQL Injection~~
-* Remote File Inclusion (optional)
+* ~~Remote File Inclusion (optional)~~
