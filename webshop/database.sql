@@ -34,6 +34,7 @@ create table Orders(
 	username varchar(20),
 	p_id int,
 	quantity int NOT NULL,
+	ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 	FOREIGN KEY (username) REFERENCES Users(username),
 	FOREIGN KEY (p_id) REFERENCES Products(id)
 );
