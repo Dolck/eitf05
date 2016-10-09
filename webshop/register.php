@@ -1,6 +1,9 @@
 <?php
 include 'header.php';
-
+if (empty($_SESSION['register_token'])) {
+    $_SESSION['register_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+}
+$token = $_SESSION['register_token'];
 ?>
 
 
@@ -34,6 +37,8 @@ include 'header.php';
 
         <label for="inputCity" class="sr-only">City</label>
         <input type="text" id="inputCity" name="inputCity" class="form-control" placeholder="City" required>
+
+        <input type="hidden" name="csrfToken" value="<?php echo $token ?>" required>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
       </form>
