@@ -12,7 +12,7 @@
 
     function add() {
         $id = $_POST['product'];
-        $quantity = $_POST['quantity'];
+        $quantity = intval($_POST['quantity']);
         if ($quantity > 0 && isValidID($id)) {
             if (isset($_SESSION['cart'])) {
                 $oldSum = isset($_SESSION['cart'][$id]) ? $_SESSION['cart'][$id] : 0;
@@ -24,16 +24,14 @@
 
     function set() {
         $id = $_POST['product'];
-        $quantity = $_POST['quantity'];
+        $quantity = intval($_POST['quantity']);
         if (isValidID($id)) {
-            if ($quantity < 1 && isset($_SESSION['cart'][$id])) {
-                if (sizeof($_SESSION['cart']) < 2)
-                    unset($_SESSION['cart']);
-                else
-                    unset($_SESSION['cart'][$id]);
-            }
-            else
+            if ($quantity > 0) {
                 $_SESSION['cart'][$id] = $quantity;
+            } else if (isset($_SESSION['cart'][$id]) && sizeof($_SESSION['cart']) == 1) {
+                unset($_SESSION['cart']);
+            }else
+                unset($_SESSION['cart'][$id]);
         }
     }
 ?>
