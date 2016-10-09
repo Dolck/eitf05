@@ -33,8 +33,6 @@ if (strlen($username) > 20) {
 		echo "Sorry, it seems like some input field is too long, the maximum length is 30, " .
 		"<a href=\"javascript:history.go(-1)\">go back</a>" . " and try again";
 } else if(!empty($_SESSION['register_token']) && hash_equals($_POST['csrfToken'], $_SESSION['register_token'])){
-	//Unset token so it only is used once!
-	unset($_SESSION['register_token']);
  	if($password == $confirmPassword){
 		try {
 			$stmt = $pdo_conn->prepare($sql);
@@ -62,4 +60,6 @@ if (strlen($username) > 20) {
 	echo "Sorry, it seems like your csrf token doesn't match, " .
 		"<a href=\"javascript:history.go(-1)\">go back</a>" . " and try again";
 }
+//Unset token so it only is used once!
+unset($_SESSION['register_token']);
 ?>
