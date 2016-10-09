@@ -14,10 +14,12 @@ create table Users(
 	lastname varchar (30) NOT NULL,
 	city varchar (30) NOT NULL,
 	street varchar (30) NOT NULL,
-	zipcode varchar (30) NOT NULL
+	zipcode varchar (30) NOT NULL,
+	first_failed_login DATETIME NOT NULL,
+	failed_login_count int DEFAULT 0
 );
 
-INSERT INTO Users VALUES ('nolla', '$2y$10$PKDJao3dvi.EGgyR2hwq..62eK0LUzj8eMDxrgDqOP/r2XyD1km4C'/* 'ny123' */, 'dat16hsi@student.lu.se', 'Homer', 'Simpson', 'Springfield', '742 Evergreen Terrace', '58008');
+INSERT INTO Users VALUES ('nolla', '$2y$10$PKDJao3dvi.EGgyR2hwq..62eK0LUzj8eMDxrgDqOP/r2XyD1km4C'/* 'ny123' */, 'dat16hsi@student.lu.se', 'Homer', 'Simpson', 'Springfield', '742 Evergreen Terrace', '58008', '1000-01-01 00:00:00','0');
 
 create table Products(
 	id int PRIMARY KEY auto_increment,

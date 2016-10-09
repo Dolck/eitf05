@@ -28,7 +28,7 @@ $zipcode =  $_POST['inputZip'];
 
 $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
-$sql = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+$sql = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, '1000-01-01 00:00:00', '0')";
 
 if (strlen($username) > 20) {
 	echo "Sorry, it seems like the username is too long, the maximum length is 20, " .
