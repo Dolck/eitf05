@@ -13,7 +13,7 @@
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if(empty($_SESSION['loggedIn'])){
             echo '<h1>You must <a href="login.php">login</a> before you can checkout!</h1>';
-        }else{
+    	}else if(!empty($_SESSION['payment_token']) && hash_equals($_POST['csrfToken'], $_SESSION['payment_token'])){
         	//Here we would verify payment information etc..
         	if(!empty($_SESSION['cart'])){
         		$cart_info = $_SESSION['cart'];
@@ -48,7 +48,6 @@
 			<h3>Address</h3>
 			<?php 
 				$sql = "SELECT email, forename, lastname, city, street, zipcode FROM Users WHERE username=?";
-				//$sql = "SELECT * FROM Users WHERE username=?";
 				$stmt = $pdo_conn->prepare($sql);
 				$stmt->execute(array($_SESSION['username']));
 				$user = $stmt->fetchAll();
@@ -63,10 +62,13 @@
 				echo '<h2>You shouldn\'t be here with an empty cart. Go <a href="index.php">home</a></h2>';
 			}
 
+        }else{
+        	echo 'You shouldn\'t be here. Go <a href="index.php">home</a>';
         }
 	}else{
 		echo 'You shouldn\'t be here. Go <a href="index.php">home</a>';
 	}
+	unset($_SESSION['payment_token']);
 ?>
 
     </div> <!-- /container -->

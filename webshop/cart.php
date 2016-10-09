@@ -2,6 +2,14 @@
     include_once "toolbox.php";
     include_once 'header.php';
 
+    $_SESSION['cart_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+    $token = $_SESSION['cart_token'];
+
+    if (empty($_SESSION['checkout_token'])) {
+        $_SESSION['checkout_token'] = bin2hex(openssl_random_pseudo_bytes(32));
+    }
+    $checkout_token = $_SESSION['checkout_token'];
+
     $totalPrice = 0;
   ?>
   <div id="content">
@@ -60,7 +68,7 @@
           <div class="input-group pull-right" style="width: 1rem;">
             <span class="input-group-addon">Total: <?php echo $totalPrice ?>:-</span>
             <span class="input-group-btn">
-              <a href="checkout.php" role="button" class="btn btn-success">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a>
+              <a href="checkout.php?csrfToken=<?php echo $checkout_token ?>" role="button" class="btn btn-success">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a>
             </span>
           </div>
         </div>
@@ -79,7 +87,8 @@
     });
 
     function itemUpdate(id, qty = 0) {
-      $.post('updateCart.php', { 'action': "set", 'product': id, 'quantity': qty }, location.reload());
+      $.post('updateCart.php', { 'action': "set", 'product': id, 'quantity': qty, 'csrfToken': '<?php echo $token ?>'}, location.reload()).fail(function() {
+                            alert( "error" ); });
     }
     $('.cart-item-update').click(function () {
       let id = $(this).attr('data-id');
