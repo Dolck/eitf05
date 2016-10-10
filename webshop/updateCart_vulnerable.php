@@ -1,5 +1,5 @@
 <?php
-    include_once "toolbox.php";
+    //include_once "toolbox.php";
 
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         session_start();
@@ -35,8 +35,15 @@
                 $_SESSION['cart'][$id] = $quantity;
             } else if (isset($_SESSION['cart'][$id]) && sizeof($_SESSION['cart']) == 1) {
                 unset($_SESSION['cart']);
-            }else
+            } else
                 unset($_SESSION['cart'][$id]);
         }
+    }
+
+    function isValidID($id) {
+        $mysqli = new mysqli("127.0.0.1", "username", "password", "testdb");
+        $result = $mysqli->query('SELECT EXISTS(SELECT 1 FROM Products WHERE id="'.$id.'")');
+        $mysqli->close();
+        return $result->fetch_array(MYSQLI_NUM)[0];
     }
 ?>
